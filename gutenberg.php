@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Gutenberg
+ * Plugin Name: IntegrateBlocks
  * Plugin URI: https://github.com/WordPress/gutenberg
  * Description: Printing since 1440. This is the development plugin for the new block editor in core.
  * Version: 5.1.0
@@ -169,8 +169,8 @@ function gutenberg_pre_init() {
 	$version = str_replace( '-src', '', $wp_version );
 
 	if ( version_compare( $version, '5.0.0', '<' ) ) {
-		add_action( 'admin_notices', 'gutenberg_wordpress_version_notice' );
-		return;
+		// add_action( 'admin_notices', 'gutenberg_wordpress_version_notice' );
+		// return;
 	}
 
 	require_once dirname( __FILE__ ) . '/lib/load.php';

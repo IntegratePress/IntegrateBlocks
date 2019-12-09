@@ -9,6 +9,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'Silence is golden.' );
 }
 
+if ( ! function_exists( 'register_block_type' ) ) {
+	/**
+	 * Registers a block type.
+	 *
+	 * @since 0.1.0
+	 * @since 0.6.0 Now also accepts a WP_Block_Type instance as first parameter.
+	 *
+	 * @param string|WP_Block_Type $name Block type name including namespace, or alternatively a
+	 *                                   complete WP_Block_Type instance. In case a WP_Block_Type
+	 *                                   is provided, the $args parameter will be ignored.
+	 * @param array                $args {
+	 *     Optional. Array of block type arguments. Any arguments may be defined, however the
+	 *     ones described below are supported by default. Default empty array.
+	 *
+	 *     @type callable $render_callback Callback used to render blocks of this block type.
+	 * }
+	 * @return WP_Block_Type|false The registered block type on success, or false on failure.
+	 */
+	function register_block_type( $name, $args = array() ) {
+		return WP_Block_Type_Registry::get_instance()->register( $name, $args );
+	}
+}
+
+if ( ! function_exists( 'unregister_block_type' ) ) {
+	/**
+	 * Unregisters a block type.
+	 *
+	 * @since 0.1.0
+	 * @since 0.6.0 Now also accepts a WP_Block_Type instance as first parameter.
+	 *
+	 * @param string|WP_Block_Type $name Block type name including namespace, or alternatively a
+	 *                                   complete WP_Block_Type instance.
+	 * @return WP_Block_Type|false The unregistered block type on success, or false on failure.
+	 */
+	function unregister_block_type( $name ) {
+		return WP_Block_Type_Registry::get_instance()->unregister( $name );
+	}
+}
+
 if ( ! function_exists( 'gutenberg_parse_blocks' ) ) {
 	/**
 	 * Parses blocks out of a content string.
